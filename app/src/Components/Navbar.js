@@ -1,16 +1,39 @@
 import { Link } from "react-router-dom";
 import logo from "../Images/logo.png";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Categories from "./Categories";
 import Contact from "./Contact";
 import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
+  // Toggle the mobile menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // Close the menu when clicking outside
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Add event listener if the menu is open
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Remove event listener if the menu is closed
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <nav className="navbar flex justify-between bg-gray-900 items-center py-3 px-4 sm:px-6">
@@ -111,7 +134,10 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="absolute top-16 right-0 bg-gray-900 text-white w-32 p-4 md:hidden z-10">
+        <div
+          ref={menuRef}
+          className="absolute top-16 right-0 bg-gray-900 text-white w-32 p-4 md:hidden z-10"
+        >
           <ul className="flex flex-col gap-4">
             <li className="hover:text-yellow-600 cursor-pointer">
               <Link to="/">Home</Link>

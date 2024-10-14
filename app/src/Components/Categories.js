@@ -10,7 +10,7 @@ const Categories = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {isHovered && (
-        <section className="bg-gray-800  text-white py-8 w-full h-[60vh]   flex items-center fixed left-0 top-28">
+        <section className="bg-gray-800 text-white py-8 w-full h-[60vh] flex items-center fixed left-0 top-16 z-20">
           <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 w-full gap-8">
             {/* Watches */}
             <div>
@@ -80,7 +80,8 @@ const Categories = () => {
             </div>
           </div>
         </section>
-      )}Your Product
+      )}
+      Your Product
     </div>
   );
 };

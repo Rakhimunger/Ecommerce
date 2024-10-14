@@ -15,6 +15,7 @@ import AccountMenu from './Components/AccountMenu';
 import ChangePassword from './Components/ChangePassword';
 import DeletAccount from './Components/DeletAccount';
 import Wishlist from './Components/Wishlist';
+import Shop from './Components/Shop';
 
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
           <Route path="/ChangePassword" element={<ChangePassword />} />
           <Route path="/DeletAccount" element={<DeletAccount />} />
           <Route path="/Wishlist" element={<Wishlist/>}/>
+          
+          <Route path="/shop" element={<Shop />} />
+         
         </Routes>
       </Router>
     </div>

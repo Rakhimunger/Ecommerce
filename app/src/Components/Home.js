@@ -8,18 +8,30 @@ import Oven from "../Images/oven.png";
 import vivo from "../Images/vivo.webp";
 import Footer from "./Footer";
 import ImageSlider from "./ImageSlider";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", 
+    });
+  };
+
+  const navigate=useNavigate();
+  const handleClick=()=>{
+    navigate("/Shop");
+  }
   return (
     
-    <div className="bg-gray-100 min-h-screen"> {/* Parent div with bg-gray-100 */}
+    <div className="bg-gray-100 min-h-screen"> 
     
       <MyCarousel />
 
-      {/* First Box - Helix Smartwatch */}
-      <div className="flex flex-col md:flex-row md:justify-between h-auto">
+ 
+      <div className="flex flex-col md:flex-row md:justify-between h-auto" onClick={handleClick}>
         <div className="box-content md:w-1/2 mx-4 sm:mx-4 mt-6 bg-white p-4 sm:p-6 rounded-md shadow-md overflow-hidden">
-          <p className="text-sm sm:text-base mb-4 truncate">
+          <p className="text-sm sm:text-base mb-4 truncate" >
             Helix Smart Metal fit 3.0 Smartwatch, Continuous Heart Rate Monitor,
             SPO2 Monitor, Activity tracking and sleep tracking, Bluetooth
             Calling, Temperature sensor (Pink)
@@ -28,14 +40,14 @@ const Home = () => {
           <div className="flex justify-center">
             <img className="h-36 sm:h-48 object-contain" src={Watch1} alt="Smartwatch1" />
           </div>
-          <div className="flex justify-center sm:justify-end mt-6">
-            <button
-              type="button"
-              className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
-            >
-              Add to Cart
-            </button>
-          </div>
+          <div className="flex justify-center mt-6">
+  <button
+    type="button"
+    className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
+  >
+    Add to Cart
+  </button>
+</div>
         </div>
 
         <div className="box-content md:w-1/2 mx-4 sm:mx-6 mt-6 bg-white p-4 sm:p-6 rounded-md shadow-md overflow-hidden">
@@ -48,18 +60,18 @@ const Home = () => {
           <div className="flex justify-center">
             <img className="h-36 sm:h-48 object-contain" src={Watch2} alt="Smartwatch2" />
           </div>
-          <div className="flex justify-center sm:justify-end mt-6">
-            <button
-              type="button"
-              className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
-            >
-              Add to Cart
-            </button>
-          </div>
+          <div className="flex justify-center mt-6">
+  <button
+    type="button"
+    className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
+  >
+    Add to Cart
+  </button>
+</div>
         </div>
       </div>
 
-      {/* Second Box */}
+    
       <div className="flex flex-col md:flex-row md:justify-between h-auto mt-6">
         <div className="box-content md:w-1/3 mx-4 sm:mx-6 mt-6 bg-white p-4 sm:p-6 rounded-md shadow-md">
           <p className="text-sm sm:text-base mb-4">
@@ -70,14 +82,14 @@ const Home = () => {
           <div className="flex justify-center">
             <img className="h-36 sm:h-48" src={P} alt="Vacuum1" />
           </div>
-          <div className="flex justify-center sm:justify-end mt-6">
-            <button
-              type="button"
-              className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
-            >
-              Add to Cart
-            </button>
-          </div>
+          <div className="flex justify-center mt-10">
+  <button
+    type="button"
+    className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
+  >
+    Add to Cart
+  </button>
+</div>
         </div>
 
         <div className="box-content md:w-1/3 mx-4 sm:mx-6 mt-6 bg-white p-4 sm:p-6 rounded-md shadow-md">
@@ -89,14 +101,14 @@ const Home = () => {
           <div className="flex justify-center">
             <img className="h-36 sm:h-48" src={P2} alt="Vacuum2" />
           </div>
-          <div className="flex justify-center sm:justify-end mt-6">
-            <button
-              type="button"
-              className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
-            >
-              Add to Cart
-            </button>
-          </div>
+          <div className="flex justify-center mt-10">
+  <button
+    type="button"
+    className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
+  >
+    Add to Cart
+  </button>
+</div>
         </div>
 
         <div className="box-content md:w-1/3 mx-4 sm:mx-6 mt-6 bg-white p-4 sm:p-6 rounded-md shadow-md">
@@ -109,18 +121,18 @@ const Home = () => {
           <div className="flex justify-center">
             <img className="h-36 sm:h-48" src={Oven} alt="Oven" />
           </div>
-          <div className="flex justify-center sm:justify-end mt-6">
-            <button
-              type="button"
-              className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
-            >
-              Add to Cart
-            </button>
-          </div>
+          <div className="flex justify-center mt-6">
+  <button
+    type="button"
+    className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-1 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
+  >
+    Add to Cart
+  </button>
+</div>
         </div>
       </div>
 
-      {/* Third Box - Laptop */}
+    
       <div className="flex flex-col items-center mt-6">
         <div className="bg-white h-auto sm:w-4/5 p-6 rounded-md shadow-md">
           <p className="text-sm sm:text-base mb-4">
@@ -142,10 +154,9 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Watch ImageSlider */}
+      
       <ImageSlider />
 
-      {/* Fifth Box */}
       <div className="flex flex-col items-center mt-6">
         <div className="bg-white h-auto sm:w-4/5 p-6 rounded-md shadow-md">
           <p className="text-sm font-medium sm:text-base mb-4">
@@ -165,6 +176,14 @@ const Home = () => {
             </button>
           </div>
         </div>
+      </div>
+      <div className="bg-gray-700 h-16 flex items-center justify-center">
+        <button
+          onClick={scrollToTop} 
+          className="text-white text-[15px] focus:outline-none"
+        >
+          Back To Top
+        </button>
       </div>
 
       <Footer />
