@@ -60,7 +60,7 @@ const Footer = () => {
             </div>
 
             {/* Language and Country Selectors */}
-            <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+            <div className="flex   flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
               <select className="bg-gray-600 text-gray-300 border-none outline-none focus:ring-2 focus:ring-yellow-500 font-medium rounded-lg text-sm px-4 py-2">
                 <option>English</option>
                 <option>Hindi</option>

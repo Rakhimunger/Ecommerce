@@ -24,7 +24,7 @@ const AccountMenu = () => {
         </Link>
 
         {isOpen && (
-          <div className="absolute top-full right-0 mt-5  bg-slate-800 text-white p-5 shadow-lg w-64 z-20 md:h-80">
+          <div className="absolute top-full right-0 mt-5 bg-slate-800 text-white p-5 shadow-lg w-64 z-20">
             <ul>
               <li className="hover:bg-gray-700 text-[18px] p-2 cursor-pointer">
                 Your Account

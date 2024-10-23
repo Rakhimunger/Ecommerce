@@ -1,6 +1,7 @@
 // Corporate.js
 import React from 'react';
 import Footer from './Footer'; 
+// import ImageGallery from './ImageGallery';
 
 const Corporate = () => {
   return (
@@ -10,7 +11,7 @@ const Corporate = () => {
     
       
     <>
-      <h1>Welcome to the Home Page</h1>
+    {/* <ImageGallery/> */}
       <Footer />
     </>
   );

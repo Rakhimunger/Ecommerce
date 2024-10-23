@@ -38,7 +38,7 @@ function UserProfile() {
             {[
               { label: 'First Name', name: 'name', type: 'text' },
               { label: 'Last Name', name: 'lastName', type: 'text' },
-              { label: 'Phone', name: 'phone', type: 'text' },
+              { label: 'Phone', name: 'phone', type: 'Number' },
               { label: 'Email', name: 'email', type: 'email' },
               { label: 'Address', name: 'address', type: 'text' }
             ].map(({ label, name, type, placeholder }) => (
