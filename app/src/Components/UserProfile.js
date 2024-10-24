@@ -1,100 +1,83 @@
-import { useState } from 'react';
-import Footer from './Footer';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
+import axios from "axios";
 
 function UserProfile() {
-  const [isEditing, setIsEditing] = useState(true); // Toggle to show form
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    address: '',
+    name: "",
+    lastName: "",
+    phone: "",
+    address: "",
+    email: "",
   });
 
-  // Handle form input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const [error, setError] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://e-commerce-backend-lc8o.onrender.com/users/profile/6718adbb077cfeae2579ae30"
+      );
+      const userProfile = response.data.data;
+      setFormData({
+        name: userProfile.name,
+        lastName: userProfile.lastname,
+        phone: userProfile.phone,
+        address: userProfile.address,
+        email: userProfile.email,
+      });
+    } catch (error) {
+      console.error("There was an error fetching the data!", error);
+      setError("Error fetching data");
+    }
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form Data Submitted: ', formData);
-    setIsEditing(false); // Exit editing mode after submission
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleProfileClick = () => {
+    navigate("/profile");
   };
 
   return (
-    <div className='mx-4 my-10'>
+    <div className="mx-4 my-10">
       <div className="user-profile p-6 ring-offset-gray-600 bg-white ring-inset rounded w-full shadow-md">
         <h1 className="text-2xl font-bold mb-6">User Profile</h1>
 
-        {isEditing ? (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/** Input Fields */}
-            {[
-              { label: 'First Name', name: 'name', type: 'text' },
-              { label: 'Last Name', name: 'lastName', type: 'text' },
-              { label: 'Phone', name: 'phone', type: 'Number' },
-              { label: 'Email', name: 'email', type: 'email' },
-              { label: 'Address', name: 'address', type: 'text' }
-            ].map(({ label, name, type, placeholder }) => (
-              <div className="flex flex-col sm:flex-row items-center sm:space-x-4" key={name}>
-                <label className="block text-sm font-medium w-full sm:w-1/3">{label}:</label>
-                <input
-                  type={type}
-                  name={name}
-                  value={formData[name]}
-                  onChange={handleInputChange}
-                  className="mt-1 p-2 border border-gray-300 rounded w-full sm:w-2/3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                
-                />
-              </div>
-            ))}
-            <div className="flex flex-col sm:flex-row justify-between mt-4 space-y-2 sm:space-y-0 sm:space-x-4">
-              <button
-                type="submit"
-                className="bg-blue-500 text-white font-bold py-2 px-4 rounded w-full sm:w-auto transition duration-200 hover:bg-blue-600"
-              >
-                Save
-              </button>
-              <button
-                type="button"
-                className="bg-red-500 text-white font-bold py-2 px-4 rounded w-full sm:w-auto transition duration-200 hover:bg-red-600"
-                onClick={() => setIsEditing(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        ) : (
-          <div className="space-y-4 text-left">
-            {/** Display User Information */}
-            {[
-              { label: 'First Name', value: formData.name },
-              { label: 'Last Name', value: formData.lastName },
-              { label: 'Phone', value: formData.phone },
-              { label: 'Email', value: formData.email },
-              { label: 'Address', value: formData.address }
-            ].map(({ label, value }) => (
-              <p className="flex space-x-4" key={label}>
-                <span className="font-bold w-1/3">{label}:</span>
-               
-              </p>
-            ))}
-            <button
-              className="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4"
-              onClick={() => setIsEditing(true)}
-            >
-              Edit
-            </button>
-          </div>
-        )}
+        <div className="space-y-4 text-left">
+          <p className="flex space-x-4">
+            <span className="font-bold w-1/3">First Name:</span>
+            <span>{formData.name}</span>
+          </p>
+          <p className="flex space-x-4">
+            <span className="font-bold w-1/3">Last Name:</span>
+            <span>{formData.lastName}</span>
+          </p>
+          <p className="flex space-x-4">
+            <span className="font-bold w-1/3">Phone:</span>
+            <span>{formData.phone}</span>
+          </p>
+          <p className="flex space-x-4">
+            <span className="font-bold w-1/3">Address:</span>
+            <span>{formData.address}</span>
+          </p>
+          <p className="flex space-x-4">
+            <span className="font-bold w-1/3">Email:</span>
+            <span>{formData.email}</span>
+          </p>
+
+          <button
+            className="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4"
+            onClick={handleProfileClick}
+          >
+            Edit
+          </button>
+        </div>
       </div>
-      <Footer /> {/* Footer remains at the bottom */}
+      <Footer />
     </div>
   );
 }

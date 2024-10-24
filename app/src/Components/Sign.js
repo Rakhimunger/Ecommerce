@@ -1,6 +1,8 @@
+// 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo1 from "../Images/logo1.png";
+import axios from "axios"
 
 const Sign = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +16,7 @@ const Sign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Reset error before submission
+    setError(""); 
 
     const payload = {
       email,
@@ -22,23 +24,14 @@ const Sign = () => {
     };
 
     try {
-      const response = await fetch("https://e-commerce-backend-lc8o.onrender.com/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await axios.post(
+        "https://e-commerce-backend-lc8o.onrender.com/users/login",payload
+      );
 
-      if (response.ok) {
-        const data = await response.json();
-        // Handle successful login (e.g., save token, navigate)
-        console.log("Login successful:", data);
-        navigate("/dashboard"); // Redirect to dashboard or another page
+      if (response.data.message === "Loggedin Successfully") {
+        navigate("/"); 
       } else {
-        // Handle error response
-        const errorData = await response.json();
-        setError(errorData.message || "Login failed");
+        setError(response.data.message || "Login failed. Please check your credentials");
       }
     } catch (error) {
       console.error("Error logging in:", error);
@@ -48,7 +41,7 @@ const Sign = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center">
-      {/* Logo at the top */}
+    
       <div className="mb-4">
         <img className="h-8" src={logo1} alt="logo" />
       </div>
